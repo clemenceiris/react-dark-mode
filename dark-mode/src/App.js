@@ -1,6 +1,8 @@
 import { Content } from './components/Content';
 import { useDarkMode } from './styles/useDarkMode';
-import styled from 'styled-components';
+import { GlobalStyles, lightTheme, darkTheme } from './styles/globalStyles';
+import { Toggle } from './components/Toggle';
+import styled, { ThemeProvider } from 'styled-components';
 
 const Container = styled.div`
   max-width: 50%;
@@ -9,12 +11,16 @@ const Container = styled.div`
 
 function App() {
   const [ theme, toggleTheme ] = useDarkMode();
-  console.log(theme);
+  const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
   return (
-    <Container>
+    <ThemeProvider theme={themeMode}>
+      <Container>
+      <GlobalStyles />
+      <Toggle theme={theme} toggleTheme={toggleTheme}/>
       <Content />
-    </Container>
+      </Container>
+    </ThemeProvider>
   );
 }
 
