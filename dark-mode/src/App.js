@@ -1,4 +1,5 @@
 import { Content } from './components/Content';
+import { useDarkMode } from './styles/useDarkMode';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -7,6 +8,9 @@ const Container = styled.div`
 `;
 
 function App() {
+  const [ theme, toggleTheme ] = useDarkMode();
+  console.log(theme);
+
   return (
     <Container>
       <Content />
